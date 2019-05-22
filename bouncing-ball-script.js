@@ -5,15 +5,15 @@ const blobSpecs = {
   number: 5,
   colours: ['green', 'blue', 'red', 'purple', 'orange'],
   sizes: 20,
-  speed: [[1], [2]]
 }
 
 let blobs = new Array();
+let blobsRecord = new Array();
 
 class Blob {
   constructor(colour, size, xSpeed, ySpeed){
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
+    this.x = Math.random() * (canvas.width - 2*size) + size;
+    this.y = Math.random() * (canvas.height - 2*size) + size;
     this.colour = colour;
     this.size = size;
     this.xSpeed = xSpeed;
@@ -49,6 +49,25 @@ class Blob {
   }
 }
 
+const rand = {
+
+  speed: function(mag){
+    return (2*Math.random()-1)*mag;
+  },
+
+  colour: function(){
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.round(Math.random() * 16)];
+    }
+    return color;
+  }
+
+}
+
+
+
 function drawCanvas(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
@@ -59,9 +78,9 @@ function drawCanvas(){
 }
 
 
-for (iBlobs = 0; iBlobs < blobSpecs.number; iBlobs ++){
-  blobs.push(new Blob(blobSpecs.colours[iBlobs], blobSpecs.sizes,
-    blobSpecs.speed[0][0], blobSpecs.speed[1][0]))
+for (let iBlobs = 0; iBlobs < blobSpecs.number; iBlobs ++){
+  blobs.push(new Blob(rand.colour(), blobSpecs.sizes,
+    rand.speed(2), rand.speed(2)))
 }
 
 
