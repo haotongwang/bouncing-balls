@@ -1,3 +1,5 @@
+/* eslint-env node, browser */
+
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -5,13 +7,12 @@ const blobSpecs = {
   number: 5,
   colours: ['green', 'blue', 'red', 'purple', 'orange'],
   sizes: 20,
-}
+};
 
 let blobs = new Array();
-let blobsRecord = new Array();
 
 class Blob {
-  constructor(colour, size, xSpeed, ySpeed){
+  constructor(colour, size, xSpeed, ySpeed) {
     this.x = Math.random() * (canvas.width - 2*size) + size;
     this.y = Math.random() * (canvas.height - 2*size) + size;
     this.colour = colour;
@@ -80,11 +81,11 @@ class Blob {
 
 const rand = {
 
-  speed: function(mag){
+  speed: function(mag) {
     return (2*Math.random()-1)*mag;
   },
 
-  colour: function(){
+  colour: function() {
     const letters = '0123456789ABCDEF';
     let color = '#';
     for (let i = 0; i < 6; i++) {
@@ -96,12 +97,12 @@ const rand = {
 }
 
 
-function drawCanvas(){
+function drawCanvas() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  blobs.forEach(function(obj){
-    obj.draw()
-    obj.move()
+  blobs.forEach(function(obj) {
+    obj.draw();
+    obj.move();
   })
 }
 
