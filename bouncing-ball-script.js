@@ -25,12 +25,18 @@ class Blob {
 
   move(){
     // collision with walls
-    if (this.x >= this.width[1] || this.x <= this.width[0]){
-      this.xSpeed = -1 *this.xSpeed;
+    if (this.x >= this.width[1]){
+		this.xSpeed = -1 *Math.abs(this.xSpeed);
     }
-    if (this.y >= this.height[1] || this.y <= this.height[0]){
-      this.ySpeed = -1*this.ySpeed;
+	else if (this.x <= this.width[0]) {
+		this.xSpeed = Math.abs(this.xSpeed);
+	}
+    if (this.y >= this.height[1]){
+		this.ySpeed = -1*Math.abs(this.ySpeed);
     }
+	else if (this.y <= this.height[0]) {
+		this.ySpeed = Math.abs(this.ySpeed);
+	}
 
     // collision with blobs
     let tempX = this.x;
@@ -106,7 +112,6 @@ function drawCanvas() {
   })
 }
 
-
 for (let iBlobs = 0; iBlobs < blobSpecs.number; iBlobs ++){
   blobs.push(new Blob(rand.colour(), blobSpecs.sizes,
     rand.speed(2), rand.speed(2)))
@@ -115,9 +120,5 @@ for (let iBlobs = 0; iBlobs < blobSpecs.number; iBlobs ++){
 blobs.forEach(function(obj){
   obj.fixOverlap()
 })
-
-// blobs.push(new Blob('black', 20, 0, 0));
-// blobs.push(new Blob('black', 20, 0, 0));
-
 
 setInterval(drawCanvas, 10);
