@@ -1,5 +1,5 @@
-# learning-javascript
-I'm using this repo to store my code as I learn javascript.
+# bouncing-balls
+Learning javascript by programming a ball collision simulator.
 
 # Current to do list:
 1. Make ball-to-ball interactions more realistic
